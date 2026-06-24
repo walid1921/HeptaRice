@@ -137,7 +137,7 @@ export default function RatioChart({ rice }) {
     labels,
     datasets: [
       {
-        label: 'Water',
+        label: 'Wasser',
         data: water,
         yAxisID: 'yWater',
         borderColor: '#38bdf8',
@@ -149,7 +149,7 @@ export default function RatioChart({ rice }) {
         borderWidth: 2.5,
       },
       {
-        label: 'Ratio',
+        label: 'Verhältnis',
         data: ratios,
         yAxisID: 'yRatio',
         borderColor: '#4ade80',
@@ -190,11 +190,11 @@ export default function RatioChart({ rice }) {
         bodyColor: '#cbd5e1',
         padding: 10,
         callbacks: {
-          title: (items) => `${items[0].label}g rice`,
+          title: (items) => `${items[0].label}g Reis`,
           label: (ctx) =>
             ctx.dataset.yAxisID === 'yWater'
-              ? `Water: ${ctx.parsed.y}g`
-              : `Ratio: 1:${ctx.parsed.y.toFixed(3)}`,
+              ? `Wasser: ${ctx.parsed.y}g`
+              : `Verhältnis: 1:${ctx.parsed.y.toFixed(3)}`,
         },
       },
       sliderLine: { rice },

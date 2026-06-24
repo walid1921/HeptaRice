@@ -49,3 +49,22 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
 }
+
+@keyframes rice-floater {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.6) rotate(-8deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -90%) scale(1.05) rotate(2deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -260%) scale(0.95) rotate(10deg);
+  }
+}
+
+.rice-floater {
+  animation: rice-floater 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
