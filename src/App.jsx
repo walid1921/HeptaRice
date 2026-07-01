@@ -358,6 +358,9 @@ export default function App() {
                   </span>
                   <span className="text-2xl sm:text-3xl font-medium text-sky-400/70">g</span>
                 </div>
+                <div className="mt-1.5 text-xs sm:text-sm text-slate-400 tabular-nums">
+                  = <span className="text-slate-200 font-medium">{water} ml</span>
+                </div>
               </div>
 
               <CasserolePot
