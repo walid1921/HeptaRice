@@ -356,10 +356,13 @@ export default function App() {
                   <span className="text-5xl sm:text-6xl font-semibold leading-none bg-gradient-to-b from-sky-200 to-sky-500 bg-clip-text text-transparent">
                     {water}
                   </span>
-                  <span className="text-2xl sm:text-3xl font-medium text-sky-400/70">g</span>
+                  <span className="text-2xl sm:text-3xl font-medium text-sky-400/70">ml</span>
                 </div>
                 <div className="mt-1.5 text-xs sm:text-sm text-slate-400 tabular-nums">
-                  = <span className="text-slate-200 font-medium">{water} ml</span>
+                  Basmati:{' '}
+                  <span className="text-slate-200 font-medium">
+                    {Math.round(water / 2)} ml
+                  </span>
                 </div>
               </div>
 
