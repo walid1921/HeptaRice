@@ -19,7 +19,7 @@ function measureText(ml) {
   const parts = []
   if (fullCups > 0) parts.push(`${fullCups}× voll`)
   if (mark > 0) parts.push(`bis ${mark}`)
-  if (rest > 0) parts.push(`+${rest} ml`)
+  if (rest > 0) parts.push(`${rest} ml`)
   return parts.join(' + ')
 }
 
@@ -397,12 +397,9 @@ export default function App() {
               />
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-baseline justify-between gap-3 text-xs sm:text-sm text-slate-400 tabular-nums">
-              <span>
-                Verhältnis{' '}
-                <span className="text-slate-100 font-medium">1:{ratio.toFixed(3)}</span>
-              </span>
-              <span className="text-slate-500">Tasse: 180·360·540·720 ml</span>
+            <div className="mt-4 pt-3 border-t border-slate-800/80 text-xs sm:text-sm text-slate-400 tabular-nums">
+              Verhältnis{' '}
+              <span className="text-slate-100 font-medium">1:{ratio.toFixed(3)}</span>
             </div>
           </div>
         </section>
