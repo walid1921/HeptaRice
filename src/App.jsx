@@ -6,6 +6,22 @@ const PER_PERSON = 125
 const EXTRA = 100
 const PEOPLE_MIN = 1
 const PEOPLE_MAX = 11
+const CUP_FULL = 720
+const CUP_MARKS = [540, 360, 180]
+
+function measureText(ml) {
+  const fullCups = Math.floor(ml / CUP_FULL)
+  let rest = ml - fullCups * CUP_FULL
+  const mark = CUP_MARKS.find((m) => rest >= m) ?? 0
+  if (mark > 0) rest -= mark
+  if (fullCups === 0 && mark === 0) return null
+
+  const parts = []
+  if (fullCups > 0) parts.push(`${fullCups}× voll`)
+  if (mark > 0) parts.push(`bis ${mark}`)
+  if (rest > 0) parts.push(`+${rest} ml`)
+  return parts.join(' + ')
+}
 
 function riceForPeople(p) {
   return p * PER_PERSON + EXTRA
@@ -248,6 +264,9 @@ export default function App() {
   const rice = riceForPeople(people)
   const water = calcWater(rice)
   const ratio = calcRatio(rice)
+  const basmatiWater = Math.round(water / 2)
+  const waterCups = measureText(water)
+  const basmatiCups = measureText(basmatiWater)
 
   const updatePeople = (p) => {
     const next = Math.max(PEOPLE_MIN, Math.min(PEOPLE_MAX, p))
@@ -358,11 +377,17 @@ export default function App() {
                   </span>
                   <span className="text-2xl sm:text-3xl font-medium text-sky-400/70">ml</span>
                 </div>
-                <div className="mt-1.5 text-xs sm:text-sm text-slate-400 tabular-nums">
+                {waterCups && (
+                  <div className="mt-1 text-xs sm:text-sm text-sky-300/80 tabular-nums">
+                    {waterCups}
+                  </div>
+                )}
+                <div className="mt-3 text-xs sm:text-sm text-slate-400 tabular-nums">
                   Basmati:{' '}
-                  <span className="text-slate-200 font-medium">
-                    {Math.round(water / 2)} ml
-                  </span>
+                  <span className="text-slate-200 font-medium">{basmatiWater} ml</span>
+                  {basmatiCups && (
+                    <span className="text-slate-500"> · {basmatiCups}</span>
+                  )}
                 </div>
               </div>
 
@@ -372,9 +397,12 @@ export default function App() {
               />
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800/80 text-xs sm:text-sm text-slate-400 tabular-nums">
-              Verhältnis{' '}
-              <span className="text-slate-100 font-medium">1:{ratio.toFixed(3)}</span>
+            <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-baseline justify-between gap-3 text-xs sm:text-sm text-slate-400 tabular-nums">
+              <span>
+                Verhältnis{' '}
+                <span className="text-slate-100 font-medium">1:{ratio.toFixed(3)}</span>
+              </span>
+              <span className="text-slate-500">Tasse: 180·360·540·720 ml</span>
             </div>
           </div>
         </section>
